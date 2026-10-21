@@ -27,6 +27,10 @@ jobs:
         with:
           terraform_version: 1.9.8
 
+      # main.tf hashes ../deployment-package.zip, so it must exist even for destroy
+      - name: Create placeholder deployment package
+        run: touch deployment-package.zip
+
       - name: Terraform Init
         working-directory: terraform
         run: terraform init
